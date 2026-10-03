@@ -88,6 +88,21 @@ cc_defaults {
     ],
 }
 
+// Consumers that load BoringSSL at runtime share the library's public headers.
+cc_library_headers {
+    name: "libcrypto_headers",
+    visibility: ["//visibility:public"],
+    export_include_dirs: ["src/include"],
+    host_supported: true,
+    vendor_available: true,
+    product_available: true,
+    recovery_available: true,
+    vendor_ramdisk_available: true,
+    native_bridge_supported: true,
+    apex_available: ["//apex_available:platform", "//apex_available:anyapex"],
+    min_sdk_version: "29",
+}
+
 // Used by libcrypto + libssl
 cc_defaults {
     name: "boringssl_defaults",
